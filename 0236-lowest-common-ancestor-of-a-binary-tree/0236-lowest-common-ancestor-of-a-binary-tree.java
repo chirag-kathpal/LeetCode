@@ -8,18 +8,6 @@
  * }
  */
 class Solution {
-    boolean findPath(TreeNode root,TreeNode key,ArrayList<TreeNode> path){
-        if(root==null) return false;
-        if(root==key){
-            path.add(root);
-            return true;
-        }
-        boolean res=findPath(root.left,key,path) || findPath(root.right,key,path);
-        if(res==true){
-            path.add(root);
-        }
-        return res;
-    }
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         ArrayList<TreeNode> path1=new ArrayList<>();
         findPath(root,p,path1);
@@ -37,5 +25,17 @@ class Solution {
             j--;
         }
         return ans;
+    }
+    boolean findPath(TreeNode root, TreeNode key,ArrayList<TreeNode> path){
+        if(root==null) return false;
+        if(root==key){
+            path.add(root);
+            return true;
+        }
+        boolean res=findPath(root.left,key,path) || findPath(root.right,key,path);
+        if(res==true){
+            path.add(root);
+        }
+        return res;
     }
 }
